@@ -1,56 +1,84 @@
 __author__ = 'taylorandco'
 
-
+# JMath class
 class JMath:
+
+    # function to process the operations in the JSON file
     def process(self, node):
+
+        # Set default result 0 or False
         result = 0
 
+        # Iterate through dicts in JSON
         for key, item in node.items():
 
+            # Catch functions containing prefix "bs_"
             if key.startswith("bs_"):
+
+                # List of bs_ functions here
                 if key == "bs_sum":
+                    # Sum function - will sum all values in list. eg. "bs_sum": [1, 2, 3] - Result: 6
                     result = self.bs_sum(item)
                 elif key == "bs_count":
+                    # Count function - will count number of values in list. eg. "bs_count": [1, 2, 3] - Result: 3
                     result = self.bs_count(item)
+                else:
+                    print("Function not found")
+                    break
             else:
+
+                # Comparative operations should only have 2 operands
                 if len(item) != 2:
                     print("There must be only 2 operands per statement")
                     break
+
+                # If the item is a dict then call the process function recursively, otherwise assign the value
+                # to the operand
                 if type(item[0]) == dict:
                     operand1 = self.process(item[0])
                 else:
                     operand1 = item[0]
 
+                # If the item is a dict then call the process function recursively, otherwise assign the value
+                # to the operand
                 if type(item[1]) == dict:
                     operand2 = self.process(item[1])
                 else:
                     operand2 = item[1]
 
-                if key == "+":
+                # Process operations here
+                if key == "+": # Addition
                     result = operand1 + operand2
-                elif key == "-":
+                elif key == "-": # Subtraction
                     result = operand1 - operand2
-                elif key == "x":
+                elif key == "x": # Multiplication
                     result = operand1 * operand2
-                elif key == "/":
+                elif key == "/": # Division
                     result = operand1 / operand2
-                elif key == "AND":
+                elif key == "AND": # Boolean AND
                     result = operand1 & operand2
-                elif key == "OR":
+                elif key == "OR": # Boolean OR
                     result = operand1 | operand2
-                elif key == "XOR":
+                elif key == "XOR": # Boolean XOR
                     result = operand1 ^ operand2
-                elif key == ">":
+                elif key == ">": # Greater than
                     result = operand1 > operand2
-                elif key == "<":
+                elif key == "<": # Less than
                     result = operand1 < operand2
-                elif key == "=":
+                elif key == "=": # Equals
                     result = operand1 == operand2
+                else:
+                    print("Operation not found")
+                    break
 
+        #Return result
         return result
 
+    # Specific functions here:
     def bs_sum(self, input):
+        # Returns sum of inputs
         return sum(input)
 
     def bs_count(self, input):
+        # Returns count of inputs
         return len(input)
