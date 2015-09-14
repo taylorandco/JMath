@@ -12,16 +12,16 @@ class JMath:
         # Iterate through dicts in JSON
         for key, item in node.items():
 
-            # Catch functions containing prefix "bs_"
-            if key.startswith("bs_"):
+            # Catch functions containing prefix "jm_"
+            if key.startswith("jm_"):
 
                 # List of bs_ functions here
-                if key == "bs_sum":
-                    # Sum function - will sum all values in list. eg. "bs_sum": [1, 2, 3] - Result: 6
-                    result = self.bs_sum(item)
-                elif key == "bs_count":
-                    # Count function - will count number of values in list. eg. "bs_count": [1, 2, 3] - Result: 3
-                    result = self.bs_count(item)
+                if key == "jm_sum":
+                    # Sum function - will sum all values in list. eg. "jm_sum": [1, 2, 3] - Result: 6
+                    result = self.jm_sum(item)
+                elif key == "jm_count":
+                    # Count function - will count number of values in list. eg. "jm_count": [1, 2, 3] - Result: 3
+                    result = self.jm_count(item)
                 else:
                     print("Function not found")
                     break
@@ -75,10 +75,10 @@ class JMath:
         return result
 
     # Specific functions here:
-    def bs_sum(self, input):
+    def jm_sum(self, input):
         # Returns sum of inputs
         return sum(input)
 
-    def bs_count(self, input):
+    def jm_count(self, input):
         # Returns count of inputs
         return len(input)
