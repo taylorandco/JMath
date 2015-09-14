@@ -34,5 +34,18 @@ Result: 17
 | Subtraction    | -   |
 | Multiplication | x   |
 | Division       | /   |
+| Boolean AND    | AND |
+| Boolean OR     | OR  |
+| Boolean XOR    | XOR |
+| Greater than   | >   |
+| Less than      | <   |
+| Equals         | =   |
+
+## Supported functions:
+
+| Function | Name     |
+| -------- | -------- |
+| Sum      | jm_sum   |
+| Count    | jm_count |
 
 
